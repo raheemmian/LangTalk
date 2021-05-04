@@ -1,0 +1,12 @@
+{
+  "name": "LangTalk",
+  "displayName": "LangTalk",
+  "expo": {
+    "name": "LangTalk",
+    "slug": "LangTalk",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
