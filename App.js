@@ -5,9 +5,9 @@ import LoginPage from './components/LoginPage';
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <LoginPage />
-    </View>
+   // <View style={styles.container}>
+    <LoginPage />
+   //</View>
   );
 }
 
