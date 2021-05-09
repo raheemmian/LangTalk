@@ -2,12 +2,23 @@ import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import LoginPage from './components/LoginPage';
+import Home from './components/Home';
+import 'react-native-gesture-handler'
+import { NavigationContainer } from '@react-navigation/native'
+import{createStackNavigator} from '@react-navigation/stack'
+
+const stack = createStackNavigator();
 
 export default function App() {
   return (
-   // <View style={styles.container}>
-    <LoginPage />
-   //</View>
+    <NavigationContainer>
+      <stack.Navigator
+        screenOptions={{headerShown:false}}
+      >
+        <stack.Screen name = "LoginPage" component = {LoginPage}/>
+        <stack.Screen name = "Home" component = {Home}/>
+      </stack.Navigator>
+    </NavigationContainer>
   );
 }
 
