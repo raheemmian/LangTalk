@@ -1,16 +1,14 @@
 import React, { useState } from 'react';
 import { Image, Text, Button, View, TextInput, StyleSheet, Alert } from 'react-native';
 import AppLoading from "expo-app-loading";
-import LoginButton from './LoginButton';
+
 import {
     useFonts,
     Lora_400Regular
 } from "@expo-google-fonts/lora"
 
-handleSubmit = () => {
-    Alert.alert('simple button presed')
-}
-const LoginPage = () => {
+
+const LoginPage = ({ navigation }) => {
     let [fontsLoaded] = useFonts({
         Lora_400Regular
     });
@@ -30,18 +28,17 @@ const LoginPage = () => {
                     <TextInput style={styles.textInputs}
                         placeholder="Password"
                     />
-                   {//<LoginButton text = 'Login' onPress={this.handleSubmit} />
-                    }
                     <Button
                         color="#5F4B8BFF"
                         title="Login"
-                        onPress={() => Alert.alert('simple button presed')}
+                        onPress={() => navigation.navigate("Home") }
                     />
                     <View style={styles.space} />
                     <Button
                         color="#5F4B8BFF"
                         title="Sign Up"
-                        onPress={() => Alert.alert('simple button presed')}
+                        onPress={() =>
+                             Alert.alert('simple button presed')}
                     />
                 </View>
             </View>
