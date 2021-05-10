@@ -3,6 +3,7 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import LoginPage from './components/LoginPage';
 import Home from './components/Home';
+import SignUp from './components/SignUp';
 import 'react-native-gesture-handler'
 import { NavigationContainer } from '@react-navigation/native'
 import{createStackNavigator} from '@react-navigation/stack'
@@ -17,6 +18,7 @@ export default function App() {
       >
         <stack.Screen name = "LoginPage" component = {LoginPage}/>
         <stack.Screen name = "Home" component = {Home}/>
+        <stack.Screen name = "SignUp" component = {SignUp}/>
       </stack.Navigator>
     </NavigationContainer>
   );

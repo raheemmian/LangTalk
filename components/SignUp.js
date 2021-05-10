@@ -1,48 +1,35 @@
 import React, { useState } from 'react';
 import { Image, Text, Button, View, TextInput, StyleSheet, Alert } from 'react-native';
-import AppLoading from "expo-app-loading";
-
-import {
-    useFonts,
-    Lora_400Regular
-} from "@expo-google-fonts/lora"
-
 
 const LoginPage = ({ navigation }) => {
-    let [fontsLoaded] = useFonts({
-        Lora_400Regular
-    });
-    if (!fontsLoaded) {
-        return (<AppLoading />)
-    }
-    else {
-        return (
-            <View style={styles.container}>
-                <View style={styles.header} >
-                    <Text style={styles.loginTitle}>LangTalk</Text>
-                </View>
-                <View style={styles.body} >
-                    <TextInput style={styles.textInputs}
-                        placeholder="Email Address"
-                    />
-                    <TextInput style={styles.textInputs}
-                        placeholder="Password"
-                    />
-                    <Button
-                        color="#5F4B8BFF"
-                        title="Login"
-                        onPress={() => navigation.navigate("Home") }
-                    />
-                    <View style={styles.space} />
-                    <Button
-                        color="#5F4B8BFF"
-                        title="Sign Up"
-                        onPress={() => navigation.navigate("SignUp")}
-                    />
-                </View>
+    return (
+        <View style={styles.container}>
+            <View style={styles.header} >
+                <Text style={styles.loginTitle}>LangTalk</Text>
             </View>
-        );
-    }
+            <View style={styles.body} >
+                <TextInput style={styles.textInputs}
+                    placeholder="Email Address"
+                />
+                <TextInput style={styles.textInputs}
+                    placeholder="Password"
+                />
+                <TextInput style={styles.textInputs}
+                    placeholder="FirstName"
+                />
+                <TextInput style={styles.textInputs}
+                    placeholder="LastName"
+                />
+                <Button
+                    color="#5F4B8BFF"
+                    title="Submit"
+                    onPress={() => navigation.navigate("LoginPage")}
+                />
+                <View style={styles.space} />
+
+            </View>
+        </View>
+    );
 }
 
 const styles = StyleSheet.create({
