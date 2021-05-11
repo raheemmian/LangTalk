@@ -5,9 +5,13 @@ import { Image, Text, Button, View, TextInput, StyleSheet, Alert } from 'react-n
 
 const Home = () => {
     return (
-    <View style={styles.container}>
-        <Text>hello welcome to the home screen</Text>
-    </View>);
+        <View style={styles.container}>
+            <Button
+                color="red"
+                title="Log out"
+                onPress={() => navigation.navigate("LoginPage")}
+            />
+        </View>);
 }
 
 const styles = StyleSheet.create({
