@@ -2,8 +2,18 @@ import React, { useState } from 'react';
 import { Image, Button, View, TextInput, StyleSheet, Dimensions } from 'react-native';
 import { Avatar, TouchableRipple, Text, IconButton,Title, Caption} from 'react-native-paper'
 import {Ionicons} from '@expo/vector-icons';
+import DropDownPicker from 'react-native-dropdown-picker';
+import {Badge} from 'react-native-elements';
 
 const Profile = () => {
+    const [open, setOpen] = useState(false);
+    const [value, setValue] = useState(null);
+    const [items, setItems] = useState([
+      {label: 'Online', value: 'online', icon: () => <Badge status="success"/>},
+      {label: 'Away', value: 'away', icon: () => <Badge status="error"/>},
+      {label: 'Offline', value: 'offline', icon: () => <Badge status="primary"/>}
+    ]);
+  
     return (
         <View style={styles.container}>
             <View style={styles.header}> 
@@ -11,10 +21,35 @@ const Profile = () => {
                 <Avatar.Image size={100} source={require('../assets/Myrah.jpg')} />
                 <View style={{marginLeft: 20}}>
                     <Title style={styles.title}>Myrah Malik</Title>
+                    <DropDownPicker
+                        style = {styles.ddp}
+                        open={open}
+                        value={value}
+                        items={items}
+                        setOpen={setOpen}
+                        setValue={setValue}
+                        setItems={setItems}
+                        placeholder={"Status"}
+                        searchable={false}
+                        showTickIcon={false}
+                        showArrowIcon={false}
+                    />
                 </View>
             </View>
             <View style={styles.body}>
-                <Text>body</Text>
+                <Text
+                   style={styles.bio}
+                   multiline= {true} 
+                   placeholder = {"Bio"}
+                   numberOfLines = {10}
+                >
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod 
+                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, 
+                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo 
+                    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse 
+                    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat 
+                    non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                </Text>
             </View>
             <View style={styles.menuWrapper}> 
                 <TouchableRipple onPress={() => {}}>
@@ -34,10 +69,25 @@ const Profile = () => {
     );
 }
 var {height, width} = Dimensions.get('window');
+
 const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: "white",
+    },
+    offline:{
+        backgroundColor: "red",
+    },
+    ddp:{
+        width: width*0.5
+    },
+    bio: {
+        marginTop: height*0.02,
+        borderWidth: 2,
+        width: width*0.85,
+        height: height * 0.3,
+        paddingLeft: 5,
+        paddingRight: 5,
     },
     title:{
         marginTop: height*0.03,
@@ -61,7 +111,7 @@ const styles = StyleSheet.create({
     menuWrapper: {
         flex: 3,
         marginTop: 10,
-        justifyContent: 'flex-start',
+        justifyContent: 'flex-end',
     },
     menuItemText: {
         color: '#777777',
