@@ -30,7 +30,9 @@ const Home = () =>  {
     return (
         <SafeAreaView style={styles.container}>
             <View style={styles.header}>
-                <Text style={styles.loginTitle}>LangTalk</Text>
+                <View style={styles.logo}>
+                    <Text style={styles.loginTitle}>LangTalk</Text>
+                </View>
                 <TouchableRipple 
                 onPress={() => {}}
                 style={styles.menuItem}
@@ -53,10 +55,6 @@ const styles = StyleSheet.create({
     header: {
         flex: 2,
         flexDirection: 'row',
-    },
-    searchb: {
-        marginTop: height*0.08,
-        width: width*0.8,
     },
     loginTitle: {
         fontFamily: "Lora_400Regular",

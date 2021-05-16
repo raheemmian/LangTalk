@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Image, Text, Button, View, TextInput, StyleSheet, Alert } from 'react-native';
 import AppLoading from "expo-app-loading";
+import {InputOutline} from 'react-native-input-outline'
 
 import {
     useFonts,
@@ -22,15 +23,13 @@ const LoginPage = ({ navigation }) => {
                     <Text style={styles.loginTitle}>LangTalk</Text>
                 </View>
                 <View style={styles.body} >
-                    <TextInput style={styles.textInputs}
-                        placeholder="Email Address"
-                    />
-                    <TextInput style={styles.textInputs}
-                        placeholder="Password"
-                    />
+                    <InputOutline
+                        placeholder ="Email Address"
+                    >
+                    </InputOutline>
                     <Button
                         color="#5F4B8BFF"
-                        title="Login"
+                        title="Sign in"
                         onPress={() => navigation.navigate("Home") }
                     />
                     <View style={styles.space} />
@@ -67,19 +66,14 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         paddingHorizontal: 20,
         paddingVertical: 30,
-        //justifyContent: 'space-between',
     },
     loginTitle: {
         fontFamily: "Lora_400Regular",
         fontSize: 50,
         color: 'white',
-        //textAlign: 'center',
-        //alignSelf: 'center',
-        //justifyContent: ''
         justifyContent: 'center',
         alignSelf: 'center',
         marginTop: 80,
-        //alignItems: 'center',
     },
     textInputs: {
         borderWidth: 1,
