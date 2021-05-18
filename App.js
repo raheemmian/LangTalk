@@ -6,6 +6,7 @@ import Home from './components/Home';
 import Setting from './components/Settings';
 import SignUp from './components/SignUp';
 import Profile from './components/Profile';
+import MapPage from './components/Map';
 import 'react-native-gesture-handler';
 import { NavigationContainer } from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
@@ -39,18 +40,13 @@ export default function App() {
         screenOptions={{headerShown:false}}
       >
         <stack.Screen name = "LoginPage" component = {LoginPage}/> 
+
         {/*The naviagtion tabs on the bottom of the home screen*/}
         <stack.Screen name = "Home" component = {HomeTabNavigator}>
-         
-         {/* {() => (
-            <Tab.Navigator>
-              <Tab.Screen name = "Home" component = {Home}/>
-              <Tab.Screen name = "Setting" component = {Setting}/>
-              <Tab.Screen name = "Profile" component = {Profile}/>
-            </Tab.Navigator>
-         )} */}
         </stack.Screen>
+
         <stack.Screen name = "SignUp" component = {SignUp}/>
+        <stack.Screen name = "MapPage" component = {MapPage}/>
       </stack.Navigator>
     </NavigationContainer>
   );

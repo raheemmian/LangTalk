@@ -3,6 +3,10 @@ import { Image, Text, Button, View, TextInput, StyleSheet, Alert, TouchableOpaci
 import AppLoading from "expo-app-loading";
 import { InputOutline } from 'react-native-input-outline'
 
+{/*Need this constant so the top logo doesnt cut into the camera. */}
+import Constants from 'expo-constants';
+const statusBarHeight = Constants.statusBarHeight
+
 import {
     useFonts,
     Lora_400Regular
@@ -31,7 +35,7 @@ const LoginPage = ({ navigation }) => {
                         placeholder="Email Address"
                         activeColor="#BC8DFF"
                         fontFamily="Lora_400Regular"
-                        fontSize={20}
+                        fontSize={15}
                     />
                     <InputOutline
                         style={{
@@ -41,7 +45,7 @@ const LoginPage = ({ navigation }) => {
                         placeholder="Password"
                         activeColor="#BC8DFF"
                         fontFamily="Lora_400Regular"
-                        fontSize={20}
+                        fontSize={15}
                         secureTextEntry={true}
                     />
                     <Button
@@ -76,13 +80,14 @@ const styles = StyleSheet.create({
         paddingBottom: 50,
         justifyContent: 'center',
         alignItems: 'center',
+        marginTop: statusBarHeight
     },
     header2: {
         // had to do 1.2 because the keyboard was cutting off the bottom of some words in "Sign in to continue"
         flex: 1.2,
     },
     body: {
-        flex: 4,
+        flex: 3,
         backgroundColor: '#FFF',
         paddingHorizontal: 20,
         paddingVertical: 30,
@@ -111,12 +116,12 @@ const styles = StyleSheet.create({
     signupButton: {
         color: "#BC8DFF",
         fontFamily: "Lora_400Regular",
-        fontSize: 20
+        fontSize: 15
     },
     signupView: {
         justifyContent: 'flex-end',
         alignItems: 'center',
-        marginBottom: 20
+        marginBottom: 30,
 
     },
     space: {
