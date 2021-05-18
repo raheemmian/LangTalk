@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
     loginTitle: {
         fontFamily: "Lora_400Regular",
         fontSize: 35,
-        color: 'purple',
+        color: '#BC8DFF',
         marginTop: height*0.07,
         marginLeft: 20,
     },

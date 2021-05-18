@@ -1,72 +1,131 @@
 import React, { useState } from 'react';
-import { Image, Text, Button, View, TextInput, StyleSheet, Alert } from 'react-native';
+import { Image, Text, Button, View, TextInput, StyleSheet, Alert, TouchableOpacity, SafeAreaView, Dimensions } from 'react-native';
+import AppLoading from "expo-app-loading";
+import { InputOutline, InputStandard } from 'react-native-input-outline'
+import DropDownPicker from 'react-native-dropdown-picker';
+
+import {
+    useFonts,
+    Lora_400Regular
+} from "@expo-google-fonts/lora"
+
 
 const LoginPage = ({ navigation }) => {
-    return (
-        <View style={styles.container}>
-            <View style={styles.header} >
-                <Text style={styles.loginTitle}>LangTalk</Text>
-            </View>
-            <View style={styles.body} >
-                <TextInput style={styles.textInputs}
-                    placeholder="Email Address"
-                />
-                <TextInput style={styles.textInputs}
-                    placeholder="Password"
-                />
-                <TextInput style={styles.textInputs}
-                    placeholder="FirstName"
-                />
-                <TextInput style={styles.textInputs}
-                    placeholder="LastName"
-                />
-                <Button
-                    color="#5F4B8BFF"
-                    title="Submit"
-                    onPress={() => navigation.navigate("LoginPage")}
-                />
-                <View style={styles.space} />
+    const [open, setOpen] = useState(false);
+    const [value, setValue] = useState(null);
+    const [items, setItems] = useState([
+        { label: 'Teacher', value: 'teacher' },
+        { label: 'Student', value: 'student' },
+    ]);
+    let [fontsLoaded] = useFonts({
+        Lora_400Regular
+    });
+    if (!fontsLoaded) {
+        return (<AppLoading />)
+    }
+    else {
+        return (
+            <SafeAreaView style={styles.container}>
+                <View style={styles.header1} >
+                    <Text style={styles.loginTitle}>LangTalk</Text>
+                </View>
+                <View style={styles.body} >
+                    <InputStandard
+                        style={{
+                            marginBottom: 20
+                        }}
+                        placeholder="Email Address"
+                        activeColor="#BC8DFF"
+                        fontFamily="Lora_400Regular"
+                        fontSize={15}
+                    />
+                    <InputStandard
+                        style={{
+                            marginBottom: 20
+                        }}
+                        placeholder="Password"
+                        activeColor="#BC8DFF"
+                        fontFamily="Lora_400Regular"
+                        fontSize={15}
 
-            </View>
-        </View>
-    );
+                    />
+                    <InputStandard
+                        style={{
+                            marginBottom: 20
+                        }}
+                        placeholder="Confirm Password"
+                        activeColor="#BC8DFF"
+                        fontFamily="Lora_400Regular"
+                        fontSize={15}
+                    />
+                    <View >
+                        <DropDownPicker
+                            placeholderStyle={{
+                                color: "grey",
+                                fontFamily: "Lora_400Regular",
+                                fontSize: 15
+                            }}
+                            textStyle={{
+                                fontFamily: "Lora_400Regular",
+                                fontSize: 15
+                            }}
+                            containerStyle = {{
+                                
+                            }}
+                            style={styles.ddp}
+                            open={open}
+                            value={value}
+                            items={items}
+                            setOpen={setOpen}
+                            setValue={setValue}
+                            setItems={setItems}
+                            placeholder={"Select Role"}
+                            searchable={false}
+                            showTickIcon={true}
+                            showArrowIcon={true}
+                            disableBorderRadius={true}
+                            dropDownDirection="bottom"
+                        />
+                    </View>
+                    <Button
+                        color="#BC8DFF"
+                        title="Submit"
+                        onPress={() => navigation.navigate("LoginPage")}
+                    />
+                </View>
+            </SafeAreaView>
+        );
+    }
 }
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: "#5F4B8BFF"
+        backgroundColor: '#FFF'
     },
 
-    header: {
+    header1: {
         flex: 1,
-        backgroundColor: "#5F4B8BFF",
-        //alignItems: 'flex-end',
+        backgroundColor: '#FFF',
         paddingHorizontal: 20,
-        paddingBottom: 50
+        paddingBottom: 50,
+        justifyContent: 'center',
+        alignItems: 'center',
     },
     body: {
-        flex: 3,
-        backgroundColor: '#E69A8DFF',
-        borderTopLeftRadius: 30,
-        borderTopRightRadius: 30,
-        //need this for the border radius to work for some reason
-        borderWidth: 1,
+        flex: 4,
+        backgroundColor: '#FFF',
         paddingHorizontal: 20,
         paddingVertical: 30,
-        //justifyContent: 'space-between',
+    },
+    ddp:{
+        marginBottom: 100
     },
     loginTitle: {
         fontFamily: "Lora_400Regular",
         fontSize: 50,
-        color: 'white',
-        //textAlign: 'center',
-        //alignSelf: 'center',
-        //justifyContent: ''
-        justifyContent: 'center',
-        alignSelf: 'center',
-        marginTop: 80,
-        //alignItems: 'center',
+        color: '#BC8DFF',
+        marginTop: 60,
     },
     textInputs: {
         borderWidth: 1,
