@@ -56,7 +56,7 @@ const Home = ({ navigation }) => {
             <View style={styles.header}>
                 <Text style={styles.loginTitle}>LangTalk</Text>
                 <TouchableOpacity
-                    //onPress={() => navigation.navigate("MapPage")}
+                    onPress={() => navigation.navigate("MapPage")}
                     style={styles.menuItem}
                 >
                     <Ionicons name="map-outline" size={25} color='#BC8DFF' />

@@ -7,6 +7,7 @@ import Setting from './components/Settings';
 import SignUp from './components/SignUp';
 import Profile from './components/Profile';
 import MapPage from './components/Map';
+import Search from './components/Search';
 import 'react-native-gesture-handler';
 import { NavigationContainer } from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
@@ -47,6 +48,7 @@ export default function App() {
 
         <stack.Screen name = "SignUp" component = {SignUp}/>
         <stack.Screen name = "MapPage" component = {MapPage}/>
+        <stack.Screen name = "Search" component = {Search}/>
       </stack.Navigator>
     </NavigationContainer>
   );
