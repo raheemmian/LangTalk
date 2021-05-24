@@ -9,7 +9,7 @@ import * as Location from 'expo-location'
 
 {/*NOTE: You need to add NSLocationWhenInUseUsageDescription key in Info.plist to 
 enable geolocation, otherwise it is going to fail silently! You will also need to add an 
-explanation for why you need the users location against NSLocationWhenInUseUsageDescription in Info.plist. 
+explanation for why you need the users lffocation against NSLocationWhenInUseUsageDescription in Info.plist. 
 Otherwise Apple may reject your app submission. for IOS*/}
 
 const MapPage = ({ navigation }) => {
