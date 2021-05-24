@@ -17,7 +17,7 @@ import {
 const LoginPage = ({ navigation }) => {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
-    //registration method passes data to the back end.
+    //login method verifies the data in the back end
     const login = () => {
         
         Axios.post('http://10.0.2.2:3001/login',

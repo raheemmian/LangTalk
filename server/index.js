@@ -26,7 +26,7 @@ db.connect((err) =>{
 })
 
 //---------------login and sign up page --------------------------------//
-
+//checks if the user exists in the database, when signing up
 app.post('/user', (req, res) => {
     const username = req.body.username;
     console.log(username)
@@ -34,7 +34,7 @@ app.post('/user', (req, res) => {
         if(err) {
             console.log(err)
         }
-        else if (results.length > 0) {
+        else if (results.length > 0) { //if user found then send true
             res.send(true)
         }
         //var rows = JSON.parse(JSON.stringify(results[0]))
@@ -43,7 +43,7 @@ app.post('/user', (req, res) => {
         }
     })
 })
-
+//verify the username and password are correct 
 app.post('/login', (req,res) => {
     const username = req.body.username
     const password = req.body.password
@@ -52,7 +52,7 @@ app.post('/login', (req,res) => {
         if(err){ 
             console.log(err)
         }
-        else if(results.length > 0){
+        else if(results.length > 0){ //send true if there is a match in the database
             res.send(true)
         }else{
             res.send(false)
@@ -60,7 +60,7 @@ app.post('/login', (req,res) => {
     })
 
 })
-
+// insert the sign up data in the database.
 app.post('/register', (req, res) => {
 
     const username = req.body.username
@@ -71,7 +71,9 @@ app.post('/register', (req, res) => {
 
     db.query("insert into users (username, password, firstname, lastname, role) values (?,?,?,?,?);", [username, password, firstname, lastname, role], 
     (err, result) => {
-        console.log(err)
+        if (err){
+            console.log(err)
+        } 
     })
 })
 
