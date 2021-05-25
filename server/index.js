@@ -16,10 +16,10 @@ const db = mysql.createConnection({
     database: "langtalk",
 })
 
-db.connect((err) =>{
+db.connect((err) => {
     if (err) {
         console.log('error connecting ' + err.stack)
-    }else{
+    } else {
         console.log('connected')
     }
 
@@ -30,8 +30,8 @@ db.connect((err) =>{
 app.post('/user', (req, res) => {
     const username = req.body.username;
     console.log(username)
-    db.query( "select username from users where username = ?", username, (err,results,fields) => {
-        if(err) {
+    db.query("select username from users where username = ?", username, (err, results, fields) => {
+        if (err) {
             console.log(err)
         }
         else if (results.length > 0) { //if user found then send true
@@ -44,17 +44,17 @@ app.post('/user', (req, res) => {
     })
 })
 //verify the username and password are correct 
-app.post('/login', (req,res) => {
+app.post('/login', (req, res) => {
     const username = req.body.username
     const password = req.body.password
 
-    db.query("select username, password from users where username = ? and password = ?", [username, password], (err, results) => {
-        if(err){ 
+    db.query("select username, password from users where username = ? and password = ?", [username, password], (err, result) => {
+        if (err) {
             console.log(err)
         }
-        else if(results.length > 0){ //send true if there is a match in the database
+        else if (result.length > 0) { //send true if there is a match in the database
             res.send(true)
-        }else{
+        } else {
             res.send(false)
         }
     })
@@ -69,15 +69,68 @@ app.post('/register', (req, res) => {
     const lastname = req.body.lastname
     const role = req.body.role
 
-    db.query("insert into users (username, password, firstname, lastname, role) values (?,?,?,?,?);", [username, password, firstname, lastname, role], 
-    (err, result) => {
-        if (err){
-            console.log(err)
-        } 
-    })
+    db.query("insert into users (username, password, firstname, lastname, role) values (?,?,?,?,?);", [username, password, firstname, lastname, role],
+        (err, result) => {
+            if (err) {
+                console.log(err)
+            }
+        })
 })
 
 //--------------- EO login and sign up page --------------------------------//
+//----------------Home page -----------------------------------------------//
+
+app.post('/favorites', (req, res) => {
+    // gets the users favorites, gets the first name, last name and the language name they teach
+    const username = req.body.username
+    const q = 'select users.firstname, users.lastname, languageTable.languageName ' +
+        'from users, language, languageTable ' +
+        'where language.languageID = languageTable.languageID and users.userID = language.userID and users.userID in ( ' +
+        'select favID ' +
+        'from users, favorites ' +
+        'where users.userID = favorites.userID and users.username = ?);'
+
+    db.query(q, [username],
+        (err, result) => {
+            let d = []
+            if (err) {
+                console.log(err)
+            }
+            else if (result.length == 0) { 
+                //empty list
+                res.send([])
+            }
+            else {
+                Object.keys(result).forEach((key) => {
+                    var row = result[key]
+                    if (d.length == 0) {
+                        var o = {
+                            title: row.languageName,
+                            data: [row.firstname + ' ' + row.lastname]
+                        }
+                        d.push(o)
+                    }
+                    else {
+                        let obj = d.find((o, i) => {
+                            if (o.title == row.languageName) {
+                                d[i].data.push(row.firstname + ' ' + row.lastname)
+                                return true
+                            }
+                        });
+                        if (typeof obj == 'undefined') {
+                            var o = {
+                                title: row.languageName,
+                                data: [row.firstname + ' ' + row.lastname]
+                            }
+                            d.push(o)
+                        }
+                    }
+                })
+                res.send(d)
+            }
+        })
+})
+
 
 app.listen(Port, () => {
     console.log("running on port 3001")

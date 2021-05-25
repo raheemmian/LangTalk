@@ -28,7 +28,12 @@ const LoginPage = ({ navigation }) => {
             }).then((response) => {
                 if(response.data) {
                     console.log("success");
-                    navigation.navigate("Home")
+                    navigation.navigate("HomeTabNavigator", {
+                        screen: 'Home',
+                        params: {
+                            username : username
+                        },
+                    })
                 }
             }).catch((err) => {
                 console.log(err)
@@ -78,8 +83,10 @@ const LoginPage = ({ navigation }) => {
                     <Button
                         color="#BC8DFF"
                         title="Sign in"
-                        onPress={() => 
-                            login()               
+                        onPress={() =>{
+                            login() 
+                        } 
+              
                         }
                     />
                 </View>

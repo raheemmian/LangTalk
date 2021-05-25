@@ -24,7 +24,6 @@ const HomeTabNavigator = () => {
       let iconName
       if (route.name == "Home"){iconName = "home"}
       else if(route.name == "Profile"){iconName = "person"}
-
       return <Ionicons name = {iconName} size={size} color={color} />
     }
   })}>
@@ -43,7 +42,7 @@ export default function App() {
         <stack.Screen name = "LoginPage" component = {LoginPage}/> 
 
         {/*The naviagtion tabs on the bottom of the home screen*/}
-        <stack.Screen name = "Home" component = {HomeTabNavigator}>
+        <stack.Screen name = "HomeTabNavigator" component = {HomeTabNavigator}>
         </stack.Screen>
 
         <stack.Screen name = "SignUp" component = {SignUp}/>

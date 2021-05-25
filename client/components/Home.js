@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-
+import React, { useState, useEffect} from 'react';
+import Axios from 'axios'
 import {
     Image,
     Text,
@@ -33,6 +33,7 @@ const DATA = [
     
 ];
 
+//const DATA = []
 const Item = ({ title }) => (
     <View style={styles.item}>
         <Text style={styles.title}>{title}</Text>
@@ -43,14 +44,33 @@ import {
     useFonts,
     Lora_400Regular
 } from "@expo-google-fonts/lora"
-// Drawer Navigator
-import { createDrawerNavigator } from '@react-navigation/drawer';
 
-const Home = ({ navigation }) => {
+const Home = ({ route, navigation}) => {
     let [fontsLoaded] = useFonts({
         Lora_400Regular
     });
-    const isEmptyList = false
+    const [isEmptyList, setIsEmptyList] = useState(true)
+    const [data, setData] = useState([])
+    const username = route.params.username
+
+    useEffect(() => {
+        Axios.post('http://10.0.2.2:3001/favorites',
+            {
+                username: username,
+
+            }).then((response) => {
+                if (response.data.length == 0) {
+                    setIsEmptyList(true)
+                    setData(response.data)
+                }
+                else {
+                    setIsEmptyList(false)
+                    setData(response.data)
+                }
+            }).catch((err) => {
+                console.log(err)
+            });
+    }, [data])
     return (
         <SafeAreaView style={styles.container}>
             <View style={styles.header}>
@@ -68,7 +88,7 @@ const Home = ({ navigation }) => {
                     isEmptyList ? <Text>Add Favorites</Text> :
                         <SectionList
                             ItemSeparatorComponent={() => (<View style={styles.listItemSeparatorStyle} />)}
-                            sections={DATA}
+                            sections={data}
                             keyExtractor={(item, index) => item + index}
                             renderItem={({ item }) => <Item title={item} />}
                             renderSectionHeader={({ section: { title } }) => (
