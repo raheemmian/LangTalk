@@ -25,6 +25,7 @@ db.connect((err) => {
 
 })
 
+
 //---------------login and sign up page --------------------------------//
 //checks if the user exists in the database, when signing up
 app.post('/user', (req, res) => {
