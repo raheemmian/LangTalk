@@ -15,11 +15,12 @@ import {
 
 
 const LoginPage = ({ navigation }) => {
-    const [username, setUsername] = useState("")
-    const [password, setPassword] = useState("")
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
     //login method verifies the data in the back end
+    
+
     const login = () => {
-        
         Axios.post('http://10.0.2.2:3001/login',
             {
                 username: username,
