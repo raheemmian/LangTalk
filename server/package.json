@@ -2,10 +2,10 @@
   "name": "server",
   "version": "1.0.0",
   "description": "",
-  "main": "index2.js",
+  "main": "index.js",
   "scripts": {
-    "start": "node index2.js",
-    "devStart": "nodemon index2.js",
+    "start": "node index.js",
+    "devStart": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
@@ -18,3 +18,4 @@
     "nodemon": "^2.0.7"
   }
 }
+

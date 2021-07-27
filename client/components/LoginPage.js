@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useContext} from 'react';
 import { Image, Text, Button, View, TextInput, StyleSheet, Alert, TouchableOpacity, SafeAreaView, KeyboardAvoidingView } from 'react-native';
 import AppLoading from "expo-app-loading";
 import { InputOutline } from 'react-native-input-outline'
 import Axios from 'axios'
+import { UserContext } from "./UserContext";
+
 
 {/*Need this constant so the top logo doesnt cut into the camera. */}
 import Constants from 'expo-constants';
@@ -13,13 +15,12 @@ import {
     Lora_400Regular
 } from "@expo-google-fonts/lora"
 
-
 const LoginPage = ({ navigation }) => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     //login method verifies the data in the back end
+    const {user, setUser} = useContext(UserContext);
     
-
     const login = () => {
         Axios.post('http://10.0.2.2:3001/login',
             {
@@ -28,7 +29,8 @@ const LoginPage = ({ navigation }) => {
 
             }).then((response) => {
                 if(response.data) {
-                    console.log("success");
+                    console.log("success login");
+                    setUser(username)
                     navigation.navigate("HomeTabNavigator", {
                         screen: 'Home',
                         params: {
@@ -85,6 +87,7 @@ const LoginPage = ({ navigation }) => {
                         color="#BC8DFF"
                         title="Sign in"
                         onPress={() =>{
+                            
                             login() 
                         } 
               
