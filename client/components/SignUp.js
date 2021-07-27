@@ -24,7 +24,7 @@ const LoginPage = ({ navigation }) => {
     //registration method passes data to the back end.
     const register = () => {
         console.log('in register')
-        Axios.post('http://10.0.2.2:3001/register',
+        Axios.post('http://10.0.2.2:3001/signup/insert',
             {
                 username: username,
                 password: password,
@@ -172,7 +172,7 @@ const LoginPage = ({ navigation }) => {
                             if (username != "" && password != "" && confirmPassword != "" && firstname != "" && lastname != "" && role != "") {
                                 if (password == confirmPassword) {
                                     //check if username is unique.
-                                    Axios.post('http://10.0.2.2:3001/user',
+                                    Axios.post('http://10.0.2.2:3001/signup/user',
                                         {
                                             username: username,
                                         }).then((response) => {

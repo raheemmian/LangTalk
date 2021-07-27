@@ -59,43 +59,14 @@ const MapPage = ({ navigation }) => {
                     longitudeDelta: 25,
                 }}
             >
+            <Marker
+                title={"hello"}
+                 coordinate={{ latitude : 37.78825 , longitude : -122.4324 }}
+                 onPress={console.log("hello")}
+            />
             </MapView>
         </View >
     );
-
-
-
-    {/* const [inpos, setInpos] = useState(0);
- 
-    return (
-        <View style={styles.container}>
-            {/*<View style={styles.header}>
-                <TouchableOpacity
-                    onPress={() => navigation.navigate("Search")}
-                    style={styles.menuItem}
-                >
-                    <Ionicons name="search-outline" size={25} color='#BC8DFF' />
-                </TouchableOpacity>
-            </View>
-            <MapView
-                style={styles.mapcontainer}
-                showsUserLocation={true}
-                initialRegion={{
-                    latitude: 37.78825,
-                    longitude: -122.4324,
-                    latitudeDelta: 25,
-                    longitudeDelta: 25,
-                }}
-            >
-                <Marker
-                    coordinate={{  latitude,  longitude }}
-                >
-
-                </Marker>
-            </MapView>
-        </View>
-    );
-*/}
 }
 var { width, height } = Dimensions.get('window')
 const styles = StyleSheet.create({
